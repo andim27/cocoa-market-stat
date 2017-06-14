@@ -511,7 +511,7 @@
           <div class="column is-desktop is-full-mobile">
             <section class="panel">
               <p class="panel-heading">
-               Базы:
+               Источники данных:
               </p>
 
 
@@ -521,9 +521,11 @@
                     <div class="columns">
                       <div class="column is-8-desktop">
                       <h3 class="title is-3">Таблицы:</h3>
-                      <select id="table_select"  v-on:change="selectTableChange('table_select')" v-model="selectedTableId">
-                        <option v-for="(option, index) in data_source"  v-bind:value="option.id">{{option.name}}</option>
-                      </select>
+                      <span class="select">
+                          <select id="table_select"  v-on:change="selectTableChange('table_select')" v-model="selectedTableId">
+                            <option v-for="(option, index) in data_source"  v-bind:value="option.id">{{option.name}}</option>
+                          </select>
+                      </span>
                     </div>
                       <div class="column is-4-desktop">
                         <!--<button class="button is-primary" v-on:click="sourceFieldClick(index)">Поля-сброс</button>-->

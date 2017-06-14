@@ -12,63 +12,7 @@ $(document).ready(function() {
         components: {
             'main-factors':httpVueLoader('src/components/main-factors.vue'),
             'settings':httpVueLoader('src/components/settings.vue'),
-            //'main-factors':'src/components/main-factors.vue',
-            // 'settings': {
-            //     template:`
-            //         <div>
-            //         <h2 class="title is-3 has-text-centered">Установки системы</h2>
-            //         <div class="tabs is-boxed">
-            //
-            //           <ul>
-            //             <li  v-bind:class="{'is-active':(tabActiveIndex==0)}" v-on:click="tabSelect(0)">
-            //               <a>
-            //                 <span class="icon is-small"><i class="fa fa-bars"></i></span>
-            //                 <span>Рабочие таблицы</span>
-            //               </a>
-            //             </li>
-            //             <li v-bind:class="{'is-active':(tabActiveIndex==1)}"  v-on:click="tabSelect(1)">
-            //               <a>
-            //                 <span class="icon is-small"><i class="fa fa-database"></i></span>
-            //                 <span>Базы данных</span>
-            //               </a>
-            //             </li>
-            //             <li v-bind:class="{'is-active':(tabActiveIndex==2)}"  v-on:click="tabSelect(2)">
-            //               <a>
-            //                 <span class="icon is-small"><i class="fa fa-picture-o"></i></span>
-            //                 <span>Цвета</span>
-            //               </a>
-            //             </li>
-            //
-            //           </ul>
-            //         </div>
-            //         <!--B:Databases-->
-            //         <div class="columns" v-show="tabActiveIndex==1">
-            //               <div class="field" style="background-color: #f5f7fa;padding:10px;">
-            //                   <label class="radio">
-            //                     <input type="radio" name="bases" checked v-on:click="selectDatabase(0)">
-            //                     Documents
-            //                   </label>
-            //                   <label class="radio">
-            //                     <input type="radio" name="bases" v-on:click="selectDatabase(1)">
-            //                     Sbcnts
-            //                   </label>
-            //               </div>
-            //           </div>
-            //           <!--E:Databases-->
-            //         </div>
-            //         `,
-            //     data: function() {
-            //             return {
-            //                 tabActiveIndex:0
-            //             }
-            //     },
-            //     methods: {
-            //         tabSelect:function (index) {
-            //             console.log(index);
-            //             this.tabActiveIndex = index;
-            //         }
-            //     }
-            // },
+
         },
         data: { //-------------------------App data---------------------------------
             menu:[{label:'Основной график',isActive:true},
@@ -390,8 +334,25 @@ $(document).ready(function() {
     app.initMainChart(app.$data.main_chart_options);
 
 
-    //--------------Morriss---------------
-    //var MyHello = Vue.component('hello');
+    //--------------Events----------
+    app.$on('fixWorkingData',function(working_data){
+       console.log('!!! on !!!',working_data);
+       this.data_source=[];
+       this.clearAxisFields();
+       for (var i=0;i < working_data.length;i++) {
+           var ds_obj={id:i,name:working_data[i].table_name,fields:working_data[i].fields};
+           for (var j=0;j < ds_obj.fields.length;j++) {
+               ds_obj.fields[j].isAxisSelect=false;
+               ds_obj.fields[j].axisSelectedName='';
+               ds_obj.fields[j].filterSelectedName='';
+               ds_obj.fields[j].groupSelectedName='';
+           }
+
+           console.log("onfix",ds_obj);
+           this.data_source.push(ds_obj);
+       }
+       this.$emit('fixedWorkingData');
+    });
 
 });
 
