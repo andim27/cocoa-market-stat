@@ -43,6 +43,9 @@
                                 <td>
                                     <span v-text="item.base_name+'.'+item.table_name"></span>
                                 </td>
+                                <td v-show="item.isFixed">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -132,7 +135,7 @@ module.exports = {
             isDragging: false,
             delayedDragging:false,
             db_selected_id:0,
-            working_data:[],//--{base_name:'documents',table_name:'asdf',fields:[{name:'sdffg',type:'sdfg'},{}]},{},{}
+            working_data:[],//--{base_name:'documents',table_name:'asdf',isFixed:false,fields:[{name:'sdffg',type:'sdfg'},{}]},{},{}
             db_data:[
                 {id:0,base_name:'Documents',tables:[
                     {id:0,name:'СписаниеTмц',isWorking:false,fields:[
@@ -218,7 +221,8 @@ module.exports = {
                 base_name: this.db_data[this.db_selected_id].base_name,
                 table_id:  this.db_data[this.db_selected_id].tables[table_index].id,
                 table_name:this.db_data[this.db_selected_id].tables[table_index].name,
-                fields:this.db_data[this.db_selected_id].tables[table_index].fields
+                fields:this.db_data[this.db_selected_id].tables[table_index].fields,
+                isFixed:false
             };
             this.working_data.push(field_obj);
             this.db_data[this.db_selected_id].tables[table_index].isWorking = true;
@@ -240,6 +244,9 @@ module.exports = {
             this.$parent.$emit('fixWorkingData',this.working_data);
         },
         fixedWorkingData: function () {
+            for (var i=0;i < this.working_data.length;i++) {
+                this.working_data[i].isFixed = true;
+            }
             console.log('!!! fixed !!!');
         }
     },

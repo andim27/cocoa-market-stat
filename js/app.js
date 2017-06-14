@@ -351,7 +351,8 @@ $(document).ready(function() {
            console.log("onfix",ds_obj);
            this.data_source.push(ds_obj);
        }
-       this.$emit('fixedWorkingData');
+       //this.$emit('fixedWorkingData');
+       app.$refs.settings.fixedWorkingData();
     });
 
 });
