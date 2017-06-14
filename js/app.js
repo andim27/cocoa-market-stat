@@ -158,11 +158,11 @@ $(document).ready(function() {
                 if (index==3) {//--controls
                     //initToday();
                 }
-                console.log(index);
+               // console.log(index);
             },
             axisXChange:function (el) {
                 //alert(el.value);
-                console.log(this.axis_x_select);
+                //console.log(this.axis_x_select);
                 this.axis_x_detail=[];
                 if (this.axis_x_select=='month') {
 
@@ -207,8 +207,8 @@ $(document).ready(function() {
                 console.log(n);
             },
             selectTableChange:function (el_id) {
-                console.log($("#"+el_id).val());
-                console.log(this.selectedTableId);
+                //console.log($("#"+el_id).val());
+                //console.log(this.selectedTableId);
                 this.setCurDsIndex();
             },
             btnLoadClick:function(){
@@ -272,14 +272,14 @@ $(document).ready(function() {
                 ev.preventDefault();
             },
             fieldDrag:function(ev) {
-                console.log("Drag is:",ev);
+                //console.log("Drag is:",ev);
                 ev.dataTransfer.setData("text", ev.target.id);
             },
             fieldDrop:function(ev) {
                 ev.preventDefault();
                 var data = ev.dataTransfer.getData("text");
-                console.log("fieldDrop data:",data);
-                console.log("ev.target.id:",ev.target.id);
+                //console.log("fieldDrop data:",data);
+                //console.log("ev.target.id:",ev.target.id);
                 //ev.target.appendChild(document.getElementById(data));
 
                 var ds_index = data.split("_")[1];
@@ -336,7 +336,7 @@ $(document).ready(function() {
 
     //--------------Events----------
     app.$on('fixWorkingData',function(working_data){
-       console.log('!!! on !!!',working_data);
+       //console.log('!!! on !!!',working_data);
        this.data_source=[];
        this.clearAxisFields();
        for (var i=0;i < working_data.length;i++) {
@@ -348,7 +348,7 @@ $(document).ready(function() {
                ds_obj.fields[j].groupSelectedName='';
            }
 
-           console.log("onfix",ds_obj);
+           //console.log("onfix",ds_obj);
            this.data_source.push(ds_obj);
        }
        //this.$emit('fixedWorkingData');
@@ -363,7 +363,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 jQuery(document.body).on("DOMReady", "#chart1", function(e){
 
-console.log("Ready #chart1");
+//console.log("Ready #chart1");
 });
 
 

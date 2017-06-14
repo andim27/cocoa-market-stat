@@ -29,6 +29,17 @@ gulp.task('index-minify', function() {
     .pipe(gulp.dest('public/'));
 });
 
+gulp.task('vue', function (cb) {
+    pump([
+            gulp.src('src/components/*.vue'),
+            //babel({presets: ['es2015']}),
+            htmlmin({collapseWhitespace: true}),
+            gulp.dest('public/src/components/')
+        ],
+        cb
+    );
+});
+
 gulp.task('app', function (cb) {
   pump([
         gulp.src('js/app.js'),
@@ -41,4 +52,4 @@ gulp.task('app', function (cb) {
   );
 });
 
-gulp.task('public', ['index-minify','app']);
+gulp.task('public', ['index-minify','app','vue']);
