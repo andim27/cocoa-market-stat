@@ -12,9 +12,10 @@
   <!--<link rel="stylesheet" type="text/css" href="css/hello.css">-->
   <script type="text/javascript" src="js/vue.min.js"></script>
   <script type="text/javascript" src="js/http-vue-loader.js"></script>
+  <script type="text/javascript" src="js/vue-resource.min.js"></script>
   <script type="text/javascript" src="js/highcharts.js"></script>
   <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/vuedraggable.min.js"></script>
+  <!--<script type="text/javascript" src="js/vuedraggable.min.js"></script>-->
   <!--<script type="text/javascript" src="js/hello.js"></script>-->
 </head>
 <body  >
@@ -507,7 +508,7 @@
       </div>
         <!--E:Пользователи-->
         <!--B:Источники данных-->
-        <div class="column" v-bind:class="{ 'is-hidden': !menu[1].isActive }" v-cloak>
+        <div v-if="menu[1].isActive" class="column" v-bind:class="{ 'is-hidden': !menu[1].isActive }" >
           <div class="column is-desktop is-full-mobile">
             <section class="panel">
               <p class="panel-heading">
